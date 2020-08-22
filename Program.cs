@@ -6,23 +6,22 @@ namespace AtCoderSnippet
     {
         static void Main(string[] args)
         {
-            var N = int.Parse(Console.ReadLine());
-            var arr = new int[N];
-            for (long x = 1; x <= 100; x++)
+            var N = long.Parse(Console.ReadLine());
+            var A = Console.ReadLine().Split(" ");
+            long x = 0;
+
+            for (int i = 0; i < N - 1; i++)
             {
-                for (long y = 1; y <= 100; y++)
+                var ax = long.Parse(A[i]);
+                var ay = long.Parse(A[i + 1]);
+                if (ax > ay)
                 {
-                    for (long z = 1; z <= 100; z++)
-                    {
-                        long num = (x * x) + (y * y) + (z * z) + (x * y) + (y * z) + (z * x);
-                        if (num <= N) arr[num - 1] += 1;
-                    }
+                    var z = ax - ay;
+                    A[i + 1] = (ay + z).ToString();
+                    x += z;
                 }
             }
-            for (int i = 0; i < N; i++)
-            {
-                Console.WriteLine(arr[i]);
-            }
+            Console.WriteLine(x);
         }
     }
 }
