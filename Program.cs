@@ -6,22 +6,26 @@ namespace AtCoderSnippet
     {
         static void Main(string[] args)
         {
-            var N = long.Parse(Console.ReadLine());
-            var A = Console.ReadLine().Split(" ");
-            long x = 0;
+            var N_X = Console.ReadLine().Split(" ");
 
-            for (int i = 0; i < N - 1; i++)
+            var N = uint.Parse(N_X[0].ToString());
+            var X = uint.Parse(N_X[1].ToString());
+            decimal a = 0;
+            
+            for (int i = 0; i < N; i++)
             {
-                var ax = long.Parse(A[i]);
-                var ay = long.Parse(A[i + 1]);
-                if (ax > ay)
+                var V_P = Console.ReadLine().Split(" ");
+                var V = decimal.Parse(V_P[0].ToString());
+                var P = decimal.Parse(V_P[1].ToString());
+
+                a += (V * P / 100);
+                if (a > X)
                 {
-                    var z = ax - ay;
-                    A[i + 1] = (ay + z).ToString();
-                    x += z;
+                    Console.WriteLine(i + 1);
+                    break;
                 }
             }
-            Console.WriteLine(x);
+            if (a <= X) Console.WriteLine(-1);
         }
     }
 }
